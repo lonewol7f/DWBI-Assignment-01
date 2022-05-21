@@ -1,0 +1,1772 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/5/2022 11:07:55 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="KALANA-PC"
+  DTS:CreatorName="KALANA-PC\ASUS"
+  DTS:DTSID="{01817488-2E57-4EDF-8F1E-B2C63E817F46}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.180"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{E584389F-137D-46D9-8ECF-9BED16871048}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Accumulated CSV]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{EDCB125F-8F25-4FA6-9084-B90A043B9AFF}"
+      DTS:ObjectName="Accumulated CSV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\ASUS\Desktop\DWBI-Assignment01-IT20073428\DataSources\accumulated_out.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TransactionID"
+              DTS:DTSID="{6ECF489A-5882-474F-B0C0-F341FD594D0B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="accm_txn_complete_time"
+              DTS:DTSID="{69BA1D5A-FABF-439A-97F8-7433735BE012}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[KALANA-PC.AmExpert_DW.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4E6BE040-0A57-4688-91B4-5F72BF1EC592}"
+      DTS:ObjectName="KALANA-PC.AmExpert_DW.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=KALANA-PC;User ID=sa;Initial Catalog=AmExpert_DW;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAXVaduY2Y7kCM8rY3bTh8VQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADuie37qI0/Xo3IlE/LvVShY0I6OomBp4dg6wp4CYFawgAAAAAOgAAAAAIAACAAAADlEt3eAS/bBGykcDip9VH+AGnnJmf+JO3NVtJFHp/sSDAAAAA+nDSLQFTttL2zVTy1pjmJdStwcLM6A+SObjFpICuGEIKDdDR5OTylXKHIAclbfZpAAAAATLWtz8w6PSMenX4psPjwgAwCKjpdnbhFlhi7pUigcf06l1Vc+UVkxJC0EsAk3t/oXGSlLDG6/r8k5i+TBKHXZA</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Accumulated data to FactTransaction"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{39510BD3-F92E-4E84-A654-B66DF6960AA8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Accumulated data to FactTransaction"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Calculate Total Process Time Hours"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Inputs[Derived Column Input].Columns[accm_txn_create_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_create_time"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_create_time]" />
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Inputs[Derived Column Input].Columns[txn_process_time_hours]"
+                      cachedDataType="r8"
+                      cachedName="txn_process_time_hours"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[txn_process_time_hours]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEDIFF]("Hh",#{Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_create_time]},#{Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_complete_time]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEDIFF("Hh",accm_txn_create_time,accm_txn_complete_time)</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Inputs[Derived Column Input].Columns[accm_txn_complete_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_complete_time"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_complete_time]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Accumulated data to FactTransaction\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Accumulated data to FactTransaction\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Conditional Split.Inputs[Conditional Split Input].Columns[accm_txn_complete_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_complete_time"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]" />
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Conditional Split.Inputs[Conditional Split Input].Columns[txn_process_time_hours]"
+                      cachedDataType="r8"
+                      cachedName="txn_process_time_hours"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Conditional Split.Outputs[outcome_1]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="outcome_1"
+                  synchronousInputId="Package\Load Accumulated data to FactTransaction\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">![ISNULL](#{Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]}) &amp;&amp; ![ISNULL](#{Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!ISNULL(accm_txn_complete_time) &amp;&amp; !ISNULL(txn_process_time_hours)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Conditional Split.Outputs[outcome_2]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="outcome_2"
+                  synchronousInputId="Package\Load Accumulated data to FactTransaction\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]}) || [ISNULL](#{Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(accm_txn_complete_time) || ISNULL(txn_process_time_hours)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Load Accumulated data to FactTransaction\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Load Accumulated data to FactTransaction\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Extract Data from CSV file"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Accumulated CSV]"
+                  connectionManagerRefId="Package.ConnectionManagers[Accumulated CSV]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].Columns[TransactionID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].ExternalColumns[TransactionID]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].Columns[TransactionID]"
+                      name="TransactionID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].ExternalColumns[accm_txn_complete_time]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].ExternalColumns[TransactionID]"
+                      dataType="i4"
+                      name="TransactionID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].ExternalColumns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_complete_time" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Extract FactTransaction Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactTransaction]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[KALANA-PC.AmExpert_DW.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[KALANA-PC.AmExpert_DW.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[TransactionID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[TransactionID]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[TransactionID]"
+                      name="TransactionID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[CustomerKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[CustomerKey]"
+                      name="CustomerKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[ItemKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[ItemKey]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[ItemKey]"
+                      name="ItemKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[TransactionDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[TransactionDateKey]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[TransactionDateKey]"
+                      name="TransactionDateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[SellingPrice]"
+                      name="SellingPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[OtherDiscount]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[OtherDiscount]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[OtherDiscount]"
+                      name="OtherDiscount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[CouponDiscount]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[CouponDiscount]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[CouponDiscount]"
+                      name="CouponDiscount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[TotalDiscount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[TotalDiscount]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[TotalDiscount]"
+                      name="TotalDiscount"
+                      precision="30"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[TotalPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[TotalPrice]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[TotalPrice]"
+                      name="TotalPrice"
+                      precision="31"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_create_time]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[txn_process_time_hours]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]"
+                      name="txn_process_time_hours"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[InsertDate]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[InsertDate]"
+                      name="InsertDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[TransactionID]"
+                      dataType="i4"
+                      name="TransactionID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
+                      dataType="i4"
+                      name="CustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[ItemKey]"
+                      dataType="i4"
+                      name="ItemKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[TransactionDateKey]"
+                      dataType="i4"
+                      name="TransactionDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="i4"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[SellingPrice]"
+                      dataType="cy"
+                      name="SellingPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[OtherDiscount]"
+                      dataType="cy"
+                      name="OtherDiscount" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[CouponDiscount]"
+                      dataType="cy"
+                      name="CouponDiscount" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[TotalDiscount]"
+                      dataType="numeric"
+                      name="TotalDiscount"
+                      precision="30"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[TotalPrice]"
+                      dataType="numeric"
+                      name="TotalPrice"
+                      precision="31"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_create_time" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_complete_time" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[txn_process_time_hours]"
+                      dataType="r8"
+                      name="txn_process_time_hours" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[TransactionID]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[TransactionID]"
+                      name="TransactionID" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
+                      name="CustomerKey" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[ItemKey]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[ItemKey]"
+                      name="ItemKey" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[TransactionDateKey]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[TransactionDateKey]"
+                      name="TransactionDateKey" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      dataType="cy"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[SellingPrice]"
+                      name="SellingPrice" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[OtherDiscount]"
+                      dataType="cy"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[OtherDiscount]"
+                      name="OtherDiscount" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[CouponDiscount]"
+                      dataType="cy"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[CouponDiscount]"
+                      name="CouponDiscount" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[TotalDiscount]"
+                      dataType="numeric"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[TotalDiscount]"
+                      name="TotalDiscount"
+                      precision="30"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[TotalPrice]"
+                      dataType="numeric"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[TotalPrice]"
+                      name="TotalPrice"
+                      precision="31"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[txn_process_time_hours]"
+                      dataType="r8"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[txn_process_time_hours]"
+                      name="txn_process_time_hours" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[InsertDate]"
+                      name="InsertDate" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Accumulated data to FactTransaction\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Left Input].Columns[TransactionID]"
+                      cachedDataType="i4"
+                      cachedName="TransactionID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[TransactionID]" />
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Left Input].Columns[accm_txn_create_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_create_time"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[accm_txn_create_time]" />
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Left Input].Columns[txn_process_time_hours]"
+                      cachedDataType="r8"
+                      cachedName="txn_process_time_hours"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[txn_process_time_hours]" />
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Left Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[ModifiedDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Right Input].Columns[TransactionID]"
+                      cachedDataType="i4"
+                      cachedName="TransactionID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort 1.Outputs[Sort Output].Columns[TransactionID]" />
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Right Input].Columns[accm_txn_complete_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_complete_time"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort 1.Outputs[Sort Output].Columns[accm_txn_complete_time]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[TransactionID]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[TransactionID]"
+                      name="TransactionID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Left Input].Columns[TransactionID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Left Input].Columns[accm_txn_create_time]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[txn_process_time_hours]"
+                      dataType="r8"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[txn_process_time_hours]"
+                      name="txn_process_time_hours">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Left Input].Columns[txn_process_time_hours]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[ModifiedDate]"
+                      name="ModifiedDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Left Input].Columns[ModifiedDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Right Input].Columns[accm_txn_complete_time]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Accumulated data to FactTransaction\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load Accumulated data to FactTransaction\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort.Inputs[Sort Input].Columns[TransactionID]"
+                      cachedDataType="i4"
+                      cachedName="TransactionID"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[TransactionID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort.Inputs[Sort Input].Columns[accm_txn_create_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_create_time"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort.Inputs[Sort Input].Columns[txn_process_time_hours]"
+                      cachedDataType="r8"
+                      cachedName="txn_process_time_hours"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort.Inputs[Sort Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[ModifiedDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[TransactionID]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[TransactionID]"
+                      name="TransactionID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[TransactionID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[txn_process_time_hours]"
+                      dataType="r8"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[txn_process_time_hours]"
+                      name="txn_process_time_hours">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output].Columns[ModifiedDate]"
+                      name="ModifiedDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[ModifiedDate]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Accumulated data to FactTransaction\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load Accumulated data to FactTransaction\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort 1.Inputs[Sort Input].Columns[TransactionID]"
+                      cachedDataType="i4"
+                      cachedName="TransactionID"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].Columns[TransactionID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort 1.Inputs[Sort Input].Columns[accm_txn_complete_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_complete_time"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].Columns[accm_txn_complete_time]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort 1.Outputs[Sort Output].Columns[TransactionID]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort 1.Outputs[Sort Output].Columns[TransactionID]"
+                      name="TransactionID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].Columns[TransactionID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Sort 1.Outputs[Sort Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Sort 1.Outputs[Sort Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output].Columns[accm_txn_complete_time]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update Accumulated Details"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">update [AmExpert_DW].[dbo].[FactTransaction] set [accm_txn_complete_time] = ?, [txn_process_time_hours] = ?, [ModifiedDate] = GETDATE() where [TransactionID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[KALANA-PC.AmExpert_DW.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[KALANA-PC.AmExpert_DW.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input].Columns[accm_txn_complete_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_complete_time"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[accm_txn_complete_time]" />
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input].Columns[txn_process_time_hours]"
+                      cachedDataType="r8"
+                      cachedName="txn_process_time_hours"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[txn_process_time_hours]" />
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input].Columns[TransactionID]"
+                      cachedDataType="i4"
+                      cachedName="TransactionID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output].Columns[TransactionID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbTimeStamp"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="r8"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Accumulated data to FactTransaction\Update FactTransaction"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update FactTransaction"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">update [AmExpert_DW].[dbo].[FactTransaction] set ModifiedDate = GETDATE() WHERE TransactionID = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[KALANA-PC.AmExpert_DW.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[KALANA-PC.AmExpert_DW.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Inputs[OLE DB Command Input].Columns[TransactionID]"
+                      cachedDataType="i4"
+                      cachedName="TransactionID"
+                      externalMetadataColumnId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output].Columns[TransactionID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Accumulated data to FactTransaction.Paths[Derived Column Output]"
+              endId="Package\Load Accumulated data to FactTransaction\Update Accumulated Details.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load Accumulated data to FactTransaction.Paths[Flat File Source Output]"
+              endId="Package\Load Accumulated data to FactTransaction\Sort 1.Inputs[Sort Input]"
+              name="Flat File Source Output"
+              startId="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\Load Accumulated data to FactTransaction.Paths[Merge Join Output]"
+              endId="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours.Inputs[Derived Column Input]"
+              name="Merge Join Output"
+              startId="Package\Load Accumulated data to FactTransaction\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Load Accumulated data to FactTransaction.Paths[OLE DB Source Output]"
+              endId="Package\Load Accumulated data to FactTransaction\Conditional Split.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load Accumulated data to FactTransaction.Paths[outcome_1]"
+              endId="Package\Load Accumulated data to FactTransaction\Update FactTransaction.Inputs[OLE DB Command Input]"
+              name="outcome_1"
+              startId="Package\Load Accumulated data to FactTransaction\Conditional Split.Outputs[outcome_1]" />
+            <path
+              refId="Package\Load Accumulated data to FactTransaction.Paths[outcome_2]"
+              endId="Package\Load Accumulated data to FactTransaction\Sort.Inputs[Sort Input]"
+              name="outcome_2"
+              startId="Package\Load Accumulated data to FactTransaction\Conditional Split.Outputs[outcome_2]" />
+            <path
+              refId="Package\Load Accumulated data to FactTransaction.Paths[Sort Output]"
+              endId="Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Load Accumulated data to FactTransaction\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\Load Accumulated data to FactTransaction.Paths[Sort Output1]"
+              endId="Package\Load Accumulated data to FactTransaction\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Load Accumulated data to FactTransaction\Sort 1.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="276,41.6"
+          Id="Package\Load Accumulated data to FactTransaction"
+          TopLeft="351.333319591152,82.633333946334" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Accumulated data to FactTransaction">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="106.4,41.6"
+          Id="Package\Load Accumulated data to FactTransaction\Sort 1"
+          TopLeft="513.833322670725,294.900000392596" />
+        <NodeLayout
+          Size="212.8,41.6"
+          Id="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data"
+          TopLeft="155.499994039536,67.9000004959106" />
+        <NodeLayout
+          Size="189.6,41.6"
+          Id="Package\Load Accumulated data to FactTransaction\Update FactTransaction"
+          TopLeft="87.1666669978036,295.700001591047" />
+        <NodeLayout
+          Size="97.6,41.6"
+          Id="Package\Load Accumulated data to FactTransaction\Sort"
+          TopLeft="321.333329127895,297.83333398766" />
+        <NodeLayout
+          Size="209.6,41.6"
+          Id="Package\Load Accumulated data to FactTransaction\Update Accumulated Details"
+          TopLeft="357.407393205314,573.962963817797" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\Load Accumulated data to FactTransaction\Extract Data from CSV file"
+          TopLeft="484.666648818388,203.633334669537" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Load Accumulated data to FactTransaction\Merge Join"
+          TopLeft="399.666658156448,396.100001673698" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Load Accumulated data to FactTransaction\Conditional Split"
+          TopLeft="182.16666203075,159.96666741742" />
+        <NodeLayout
+          Size="244.8,41.6"
+          Id="Package\Load Accumulated data to FactTransaction\Calculate Total Process Time Hours"
+          TopLeft="341.611097755256,489.781484770716" />
+        <EdgeLayout
+          Id="Package\Load Accumulated data to FactTransaction.Paths[Derived Column Output]"
+          TopLeft="463.109245480285,531.381484770717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.5814790470804"
+              Start="0,0"
+              End="0,35.0814790470804">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.0814790470804" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Accumulated data to FactTransaction.Paths[Sort Output1]"
+          TopLeft="567.033322670725,336.500000392596">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-82.2999978476103,59.6000012811027"
+              Start="0,0"
+              End="-82.2999978476103,52.1000012811027">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.3239031983121" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.3239031983121"
+                    Point2="0,35.3239031983121"
+                    Point3="-4,35.3239031983121" />
+                  <mssgle:LineSegment
+                    End="-78.2999978476103,35.3239031983121" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-78.2999978476103,35.3239031983121"
+                    Point2="-82.2999978476103,35.3239031983121"
+                    Point3="-82.2999978476103,39.3239031983121" />
+                  <mssgle:LineSegment
+                    End="-82.2999978476103,52.1000012811027" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Accumulated data to FactTransaction.Paths[Sort Output]"
+          TopLeft="370.133329127895,339.43333398766">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94.3333290285536,56.6666676860385"
+              Start="0,0"
+              End="94.3333290285536,49.1666676860385">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.3333338430193" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.3333338430193"
+                    Point2="0,28.3333338430193"
+                    Point3="4,28.3333338430193" />
+                  <mssgle:LineSegment
+                    End="90.3333290285536,28.3333338430193" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90.3333290285536,28.3333338430193"
+                    Point2="94.3333290285536,28.3333338430193"
+                    Point3="94.3333290285536,32.3333338430193" />
+                  <mssgle:LineSegment
+                    End="94.3333290285536,49.1666676860385" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Accumulated data to FactTransaction.Paths[outcome_2]"
+          TopLeft="283.233328697417,201.56666741742">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="86.900000430478,96.2666665702396"
+              Start="0,0"
+              End="86.900000430478,88.7666665702396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.1021305450251" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.1021305450251"
+                    Point2="0,39.1021305450251"
+                    Point3="4,39.1021305450251" />
+                  <mssgle:LineSegment
+                    End="82.900000430478,39.1021305450251" />
+                  <mssgle:CubicBezierSegment
+                    Point1="82.900000430478,39.1021305450251"
+                    Point2="86.900000430478,39.1021305450251"
+                    Point3="86.900000430478,43.1021305450251" />
+                  <mssgle:LineSegment
+                    End="86.900000430478,88.7666665702396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="18.324394746489,44.1021305450251,50.2512109375,10.88671875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Accumulated data to FactTransaction.Paths[outcome_1]"
+          TopLeft="234.699995364083,201.56666741742">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-52.7333283662797,94.133334173627"
+              Start="0,0"
+              End="-52.7333283662797,86.633334173627">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.2356017158856" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.2356017158856"
+                    Point2="0,38.2356017158856"
+                    Point3="-4,38.2356017158856" />
+                  <mssgle:LineSegment
+                    End="-48.7333283662797,38.2356017158856" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-48.7333283662797,38.2356017158856"
+                    Point2="-52.7333283662797,38.2356017158856"
+                    Point3="-52.7333283662797,42.2356017158856" />
+                  <mssgle:LineSegment
+                    End="-52.7333283662797,86.633334173627" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-51.3067227768899,43.2356017158856,49.8801171875,10.759765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Accumulated data to FactTransaction.Paths[OLE DB Source Output]"
+          TopLeft="260.433328035143,109.500000495911">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.4666669215097"
+              Start="0,0"
+              End="0,42.9666669215097">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.9666669215097" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Accumulated data to FactTransaction.Paths[Merge Join Output]"
+          TopLeft="464.238877955852,437.700001673698">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.0814830970185"
+              Start="0,0"
+              End="0,44.5814830970185">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5814830970185" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Accumulated data to FactTransaction.Paths[Flat File Source Output]"
+          TopLeft="584.266648818388,245.233334669537">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-17.233326147663,49.666665723059"
+              Start="0,0"
+              End="-17.233326147663,42.166665723059">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.8333328615295" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.8333328615295"
+                    Point2="0,24.8333328615295"
+                    Point3="-4,24.8333328615295" />
+                  <mssgle:LineSegment
+                    End="-13.233326147663,24.8333328615295" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.233326147663,24.8333328615295"
+                    Point2="-17.233326147663,24.8333328615295"
+                    Point3="-17.233326147663,28.8333328615295" />
+                  <mssgle:LineSegment
+                    End="-17.233326147663,42.166665723059" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Accumulated data to FactTransaction\Extract FactTransaction Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

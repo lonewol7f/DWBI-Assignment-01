@@ -1,0 +1,498 @@
+<?xml version="1.0"?>
+<DataProfile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/sqlserver/2008/DataDebugger/">
+  <ProfileVersion>1.0</ProfileVersion>
+  <DataSources>
+    <DtsDataSource ID="{C0E33A1D-5F7E-4E85-8844-49AAA400EDB3}" Name="campaign_data_profiling">
+      <DtsConnectionManagerID>campaign_data_profiling</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{5D3C170F-C9E8-4799-9E38-C2C823E80C12}" Name="customer_address_profiling">
+      <DtsConnectionManagerID>customer_address_profiling</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{391885AB-0AF1-4B74-8B28-EBC2DC263CE3}" Name="customer_data_profile">
+      <DtsConnectionManagerID>customer_data_profile</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{99761698-9134-4B23-B062-B9F9E42BCA2F}" Name="item_category_data_profiling">
+      <DtsConnectionManagerID>item_category_data_profiling</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{3CB163BE-0FA4-4752-8BF9-356402C46115}" Name="item_data_profiling">
+      <DtsConnectionManagerID>item_data_profiling</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}" Name="KALANA-PC.AmExpert_StagingDB.sa">
+      <DtsConnectionManagerID>KALANA-PC.AmExpert_StagingDB.sa</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{7FB814D3-7C65-4E5D-98BA-DD119144DAAB}" Name="transaction_data_profiling">
+      <DtsConnectionManagerID>transaction_data_profiling</DtsConnectionManagerID>
+    </DtsDataSource>
+  </DataSources>
+  <DataProfileInput>
+    <ProfileMode>Exact</ProfileMode>
+    <Timeout>0</Timeout>
+    <Requests>
+      <ColumnNullRatioProfileRequest ID="NullRatioReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table Schema="dbo" Table="StgCampaign" />
+        <Column IsWildCard="true" />
+      </ColumnNullRatioProfileRequest>
+      <ColumnStatisticsProfileRequest ID="StatisticsReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table Schema="dbo" Table="StgCampaign" />
+        <Column IsWildCard="true" />
+      </ColumnStatisticsProfileRequest>
+      <ColumnLengthDistributionProfileRequest ID="LengthDistReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table Schema="dbo" Table="StgCampaign" />
+        <Column IsWildCard="true" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+      </ColumnLengthDistributionProfileRequest>
+      <ColumnValueDistributionProfileRequest ID="ValueDistReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table Schema="dbo" Table="StgCampaign" />
+        <Column IsWildCard="true" />
+        <Option>FrequentValues</Option>
+        <FrequentValueThreshold>0.001</FrequentValueThreshold>
+      </ColumnValueDistributionProfileRequest>
+      <CandidateKeyProfileRequest ID="KeyReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table Schema="dbo" Table="StgCampaign" />
+        <KeyColumns>
+          <Column IsWildCard="true" />
+        </KeyColumns>
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </CandidateKeyProfileRequest>
+    </Requests>
+  </DataProfileInput>
+  <DataProfileOutput>
+    <Profiles>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="campaign_id" SqlDbType="Int" MaxLength="0" Precision="10" Scale="0" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="campaign_type" SqlDbType="NVarChar" MaxLength="5" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="start_date" SqlDbType="DateTime" MaxLength="0" Precision="255" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="end_date" SqlDbType="DateTime" MaxLength="0" Precision="255" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnStatisticsProfile IsExact="true" ProfileRequestID="StatisticsReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="campaign_id" SqlDbType="Int" MaxLength="0" Precision="10" Scale="0" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <MinValue>1</MinValue>
+        <MaxValue>30</MaxValue>
+        <Mean>15.5714285714286</Mean>
+        <StdDev>8.9539638924755</StdDev>
+      </ColumnStatisticsProfile>
+      <ColumnStatisticsProfile IsExact="true" ProfileRequestID="StatisticsReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="start_date" SqlDbType="DateTime" MaxLength="0" Precision="255" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <MinValue>2012-08-10T00:00:00.0000000</MinValue>
+        <MaxValue>2029-07-13T00:00:00.0000000</MaxValue>
+      </ColumnStatisticsProfile>
+      <ColumnStatisticsProfile IsExact="true" ProfileRequestID="StatisticsReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="end_date" SqlDbType="DateTime" MaxLength="0" Precision="255" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <MinValue>2013-01-03T00:00:00.0000000</MinValue>
+        <MaxValue>2030-11-12T00:00:00.0000000</MaxValue>
+      </ColumnStatisticsProfile>
+      <ColumnLengthDistributionProfile ProfileRequestID="LengthDistReq" IsExact="true">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="campaign_type" SqlDbType="NVarChar" MaxLength="5" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+        <MinLength>1</MinLength>
+        <MaxLength>1</MaxLength>
+        <LengthDistribution>
+          <LengthDistributionItem>
+            <Length>1</Length>
+            <Count>28</Count>
+          </LengthDistributionItem>
+        </LengthDistribution>
+      </ColumnLengthDistributionProfile>
+      <CandidateKeyProfile IsExact="true" ProfileRequestID="KeyReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <KeyColumns>
+          <Column Name="campaign_id" SqlDbType="Int" MaxLength="0" Precision="10" Scale="0" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        </KeyColumns>
+        <IsExactKey>true</IsExactKey>
+      </CandidateKeyProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="campaign_id" SqlDbType="Int" MaxLength="0" Precision="10" Scale="0" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>28</NumberOfDistinctValues>
+        <ValueDistribution>
+          <ValueDistributionItem>
+            <Value>1</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>3</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>4</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>5</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>6</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>7</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>8</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>9</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>10</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>11</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>12</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>13</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>16</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>17</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>18</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>19</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>20</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>21</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>22</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>23</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>24</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>25</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>26</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>27</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>28</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>29</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>30</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+        </ValueDistribution>
+      </ColumnValueDistributionProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="campaign_type" SqlDbType="NVarChar" MaxLength="5" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>2</NumberOfDistinctValues>
+        <ValueDistribution>
+          <ValueDistributionItem>
+            <Value>X</Value>
+            <Count>6</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Y</Value>
+            <Count>22</Count>
+          </ValueDistributionItem>
+        </ValueDistribution>
+      </ColumnValueDistributionProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="start_date" SqlDbType="DateTime" MaxLength="0" Precision="255" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>25</NumberOfDistinctValues>
+        <ValueDistribution>
+          <ValueDistributionItem>
+            <Value>2012-08-10T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2012-12-08T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2012-12-12T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-02-02T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-07-01T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-07-09T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-08-04T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-08-10T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-10-08T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-11-03T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-12-01T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2015-07-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2016-02-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2016-09-12T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2016-09-13T00:00:00.0000000</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2017-12-12T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2019-05-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2019-11-12T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2021-10-13T00:00:00.0000000</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2022-04-13T00:00:00.0000000</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2022-12-12T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2025-08-12T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2026-08-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2028-01-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2029-07-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+        </ValueDistribution>
+      </ColumnValueDistributionProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{EFE37153-CA33-4C9C-81AC-811B7FFF5F97}</DataSourceID>
+        <Table DataSource="KALANA-PC" Database="AmExpert_StagingDB" Schema="dbo" Table="StgCampaign" RowCount="28" />
+        <Column Name="end_date" SqlDbType="DateTime" MaxLength="0" Precision="255" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>26</NumberOfDistinctValues>
+        <ValueDistribution>
+          <ValueDistributionItem>
+            <Value>2013-01-03T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-04-01T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-04-10T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-05-04T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-05-07T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-07-06T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-08-02T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-08-03T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-10-05T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2013-12-04T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2015-02-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2015-11-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2016-02-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2016-08-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2016-11-12T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2016-11-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2018-01-13T00:00:00.0000000</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2018-10-13T00:00:00.0000000</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2020-12-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2021-09-12T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2022-11-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2024-05-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2027-09-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2027-10-12T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2030-08-13T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2030-11-12T00:00:00.0000000</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+        </ValueDistribution>
+      </ColumnValueDistributionProfile>
+    </Profiles>
+  </DataProfileOutput>
+</DataProfile>
